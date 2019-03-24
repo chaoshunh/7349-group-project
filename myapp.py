@@ -79,21 +79,6 @@ def get_full_chain():
     return jsonify(response)
 
 
-@app.route('/register-node', methods=['POST'])
-def register_node():
-
-    node_data = request.get_json()
-
-    blockchain.create_node(node_data.get('address'))
-
-    response = {
-        'message': 'New node has been added',
-        'node_count': len(blockchain.nodes),
-        'nodes': list(blockchain.nodes),
-    }
-    return jsonify(response), 201
-
-
 @app.route('/sync-chain', methods=['GET'])
 def consensus():
 
